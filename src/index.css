@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root[data-theme='night'] {
+  --bg: 11 27 51; --card: 16 37 68; --ink: 244 241 234; --muted: 163 178 201; --line: 39 64 102;
+  color-scheme: dark;
+}
+:root[data-theme='cream'] {
+  --bg: 248 246 241; --card: 255 255 255; --ink: 10 10 10; --muted: 88 88 88; --line: 223 218 205;
+  color-scheme: light;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  word-break: normal;
+  overflow-wrap: break-word;
+  line-height: 1.55;
+}
+h1, h2, h3 { font-family: 'Bricolage Grotesque', system-ui, sans-serif; letter-spacing: -0.02em; line-height: 1.1; }
+
+:focus-visible { outline: 3px solid #FFB800; outline-offset: 2px; border-radius: 6px; }
+
+.field {
+  width: 100%;
+  background: rgb(var(--bg));
+  color: rgb(var(--ink));
+  border: 1px solid rgb(var(--line));
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  font-size: 1rem;
+  min-height: 46px;
+}
+.field::placeholder { color: rgb(var(--muted)); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0.7rem 1.2rem; border-radius: 12px;
+  font-weight: 600; text-align: center; cursor: pointer; border: 1px solid transparent;
+  transition: transform .12s ease, background-color .12s ease;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: #FFB800; color: #0A0A0A; }
+.btn-primary:hover { background: #ffc933; }
+.btn-ghost { background: transparent; border-color: rgb(var(--line)); color: rgb(var(--ink)); }
+.btn-ghost:hover { background: rgb(var(--card)); }
+.btn-dark { background: #0A0A0A; color: #fff; }
+.card { background: rgb(var(--card)); border: 1px solid rgb(var(--line)); border-radius: 18px; }
+
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-track { display: flex; width: max-content; animation: ticker 70s linear infinite; }
+.ticker:hover .ticker-track, .ticker:focus-within .ticker-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; flex-wrap: wrap; width: auto; }
+}
